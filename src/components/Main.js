@@ -13,8 +13,11 @@ function Main() {
                 <div>
                     Select location
                     <Map
-                        defaultState={{ center: [55.75, 37.57], zoom: 9, controls: ['zoomControl', 'geolocationControl', 'searchControl'] }}
-                        modules={["control.ZoomControl", "control.GeolocationControl", "control.SearchControl"]} />
+                        defaultState={{
+                            center: [55.75, 37.57],
+                            zoom: 9,
+                            controls: ['zoomControl', 'geolocationControl'] }}
+                        modules={["control.ZoomControl", "control.GeolocationControl"]} />
                 </div>
             </YMaps>
         </main>
