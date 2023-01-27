@@ -2,14 +2,15 @@ import * as React from "react";
 import axios from "axios";
 
 function Countries (props) {
-    // const [countries, setCountries] = React.useState([]);
     const countries = props.countries;
-    console.log(props.countries);
-    console.log(countries.length);
+    const handleChange = (evt) => {
+
+    }
     let options = []
     if (countries.length) {
-        options = countries.map((country) =>
-            <option key={country.id} value={country.id}>{country.name}</option>
+        options = countries.map((country) => {
+                return (<option key={country.id} value={country.countryCode+'_'+country.id}>{country.name}</option>)
+            }
         );
     }
     else {
@@ -17,8 +18,17 @@ function Countries (props) {
     }
     return (
         <>
-            <label htmlFor='country-select'>Choose a country</label>
-            <select name='countries' id='country-select'>
+            <label htmlFor='country-select'>Choose a country: </label>
+            <select value={props.country.countryCode+'_'+props.country.id} name='countries' id='country-select'
+                    onChange={(evt) => {
+                        const [countryCode, id] = evt.target.value.split('_');
+
+                        return props.onData({
+                            name: evt.target[evt.target.selectedIndex].text,
+                            id: id,
+                            countryCode: countryCode
+                        });
+                        }}>
                 {options}
             </select>
         </>
