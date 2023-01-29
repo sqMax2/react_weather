@@ -7,7 +7,7 @@ function Cities (props) {
     console.log('cities')
     }
     let options = []
-    props.toggleUpdate();
+    // React.useEffect(() => {props.toggleUpdate(false)}, []);
 
     if (cities.length) {
         let cityKey = 0
@@ -17,6 +17,7 @@ function Cities (props) {
                 return (<option key={cityKey++} value={city}>{city}</option>)
             }
         );
+        React.useEffect(() => {props.setCitiesLoaded(true)}, [cities]);
     }
     else {
         options = (<option key='0' value=''>--loading cities--</option>);
@@ -25,7 +26,7 @@ function Cities (props) {
         <>
             <label htmlFor='city-select'>Choose a city: </label>
             <select value={props.city} name='cities' id='city-select'
-                    onChange={(evt) => props.onData(evt.target[evt.target.selectedIndex].text)}>
+                    onChange={(evt) =>  {props.onData(evt.target[evt.target.selectedIndex].text)}}>
                 {options}
             </select>
         </>

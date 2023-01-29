@@ -3,8 +3,9 @@ import axios from "axios";
 
 function OxilorDataReceiver(props) {
     const oxilorKey = "oaXRift5tRFYr_sctaJPDb9BuKihPC";
-    const [oxilorData, setOxilorData] = React.useState([])
-    if (!oxilorData.length) {
+    const [oxilorData, setOxilorData] = React.useState([]);
+
+    if (props.updateData) {
         switch (props.method) {
             case 'countries':
                 axios.get(`https://data-api.oxilor.com/rest/${props.method}`, {
@@ -20,7 +21,10 @@ function OxilorDataReceiver(props) {
                     });
                 break;
             case 'search-regions':
-                axios.get(`https://data-api.oxilor.com/rest/${props.method}?searchTerm=${props.city}&type=city`, {
+                console.log('s-r: ', props.city, props.countryCode)
+
+                axios.get(`https://data-api.oxilor.com/rest/${props.method}?searchTerm=${props.city}
+                &countryCode=${props.countryCode}&type=city`, {
                     headers: {
                         'Authorization': `Bearer ${oxilorKey}`,
                         'Accept-Language': 'en'
@@ -29,7 +33,7 @@ function OxilorDataReceiver(props) {
                     .then(res => {
                         console.log('sr');
                         setOxilorData(res.data);
-                        // props.updateOxilorData(JSON.stringify(res.data));
+
                     });
                 break;
             case 'nearest-regions':
@@ -60,7 +64,7 @@ function OxilorDataReceiver(props) {
                         console.log('cr');
                         setOxilorData(res.data);
 
-                        // props.updateOxilorData(JSON.stringify(res.data));
+
                     });
                 break;
             case 'regions':

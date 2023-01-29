@@ -5,7 +5,7 @@ function GetpostmanDataReceiver(props) {
     // const ninjasKey = "0zgOCCJC/jn81f7/cROrhA==wJwq24zmBEOhKiIm";
     const [postmanData, setPostmanData] = React.useState([])
 
-    if (!postmanData.length || props.newCountry) {
+    if (props.updateData) {
         if (props.country) {
             let cursor = '';
             let hasNextPage = true;
@@ -17,21 +17,11 @@ function GetpostmanDataReceiver(props) {
                     }, {}
                 )
                     .then(res => {
-                        console.log('postman', res.data.data);
+
                         setPostmanData(res.data.data);
-
-
-                        // props.updateOxilorData(JSON.stringify(res.data));
                     });
             }
-
-            // regionsRequest();
-
-
-
-
-
-
+            regionsRequest();
         }
     }
     return (

@@ -12,6 +12,7 @@ function Countries (props) {
                 return (<option key={country.id} value={country.countryCode+'_'+country.id}>{country.name}</option>)
             }
         );
+        React.useEffect(() => {props.setCountriesLoaded(true)}, []);
     }
     else {
         options = (<option key='0' value=''>--loading countries--</option>);
@@ -21,13 +22,16 @@ function Countries (props) {
             <label htmlFor='country-select'>Choose a country: </label>
             <select value={props.country.countryCode+'_'+props.country.id} name='countries' id='country-select'
                     onChange={(evt) => {
+                        console.log('country change')
                         const [countryCode, id] = evt.target.value.split('_');
 
-                        return props.onData({
-                            name: evt.target[evt.target.selectedIndex].text,
-                            id: id,
-                            countryCode: countryCode
-                        });
+                        props.setCitiesLoaded(false);
+
+                            props.onData({
+                                name: evt.target[evt.target.selectedIndex].text,
+                                id: id,
+                                countryCode: countryCode
+                            });
                         }}>
                 {options}
             </select>
