@@ -21,10 +21,8 @@ function OxilorDataReceiver(props) {
                     });
                 break;
             case 'search-regions':
-                console.log('s-r: ', props.city, props.countryCode)
-
-                axios.get(`https://data-api.oxilor.com/rest/${props.method}?searchTerm=${props.city}
-                &countryCode=${props.countryCode}&type=city`, {
+                axios.get(`https://data-api.oxilor.com/rest/${props.method}?searchTerm=${props.city}`
+                +`&countryCode=${props.countryCode}&type=city`, {
                     headers: {
                         'Authorization': `Bearer ${oxilorKey}`,
                         'Accept-Language': 'en'
@@ -37,7 +35,8 @@ function OxilorDataReceiver(props) {
                     });
                 break;
             case 'nearest-regions':
-                axios.get(`https://data-api.oxilor.com/rest/${props.method}?latitude=${props.lat}&longitude=${props.lon}&type=city`,
+                axios.get(`https://data-api.oxilor.com/rest/${props.method}?latitude=${props.lat}`
+                +`&longitude=${props.lon}&type=city`,
                     {
                         headers: {
                             'Authorization': `Bearer ${oxilorKey}`,
@@ -73,8 +72,8 @@ function OxilorDataReceiver(props) {
                     let hasNextPage = true;
                     let temporaryData = [];
                     const regionsRequest = () => {
-                        axios.get(`https://data-api.oxilor.com/rest/${props.method}?type=city&countryCode=${props.countryCode}&
-                        first=100${cursor ? '&after=' + cursor : ''}`, {
+                        axios.get(`https://data-api.oxilor.com/rest/${props.method}?type=city&countryCode=${props.countryCode}&`
+                        +`first=100${cursor ? '&after=' + cursor : ''}`, {
                             headers: {
                                 'Authorization': `Bearer ${oxilorKey}`,
                                 'Accept-Language': 'en'

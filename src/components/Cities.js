@@ -1,13 +1,8 @@
 import * as React from "react";
-import axios from "axios";
 
 function Cities (props) {
     const cities = props.cities;
-    const handleChange = (evt) => {
-    console.log('cities')
-    }
-    let options = []
-    // React.useEffect(() => {props.toggleUpdate(false)}, []);
+    let options = [];
 
     if (cities.length) {
         let cityKey = 0
@@ -24,7 +19,7 @@ function Cities (props) {
     }
     return (
         <>
-            <label htmlFor='city-select'>Choose a city: </label>
+            <label htmlFor='city-select'>Choose a city:&nbsp;</label>
             <select value={props.city} name='cities' id='city-select'
                     onChange={(evt) =>  {props.onData(evt.target[evt.target.selectedIndex].text)}}>
                 {options}

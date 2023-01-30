@@ -13,7 +13,7 @@ function Header () {
 
     return (
         <header>
-            This is my header
+            Weather app
         </header>
     );
 }
